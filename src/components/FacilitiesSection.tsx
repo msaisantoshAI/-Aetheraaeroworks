@@ -53,20 +53,20 @@ export const FacilitiesSection: FC = () => {
     offset: ['start end', 'end start'],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
-  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.14, 1.05, 1.14]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1.04, 1.1]);
 
   return (
     <section
       ref={containerRef}
       id="facilities"
-      className="relative min-h-[90vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
+      className="relative min-h-[85vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
     >
       {/* Parallax Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div
           style={{ y: bgY, scale: bgScale }}
-          className="relative w-full h-full"
+          className="relative w-full h-full will-change-transform"
         >
           <img
             src="/images/cnc_5axis_machining_1789024600590.jpg"
@@ -75,23 +75,23 @@ export const FacilitiesSection: FC = () => {
           />
         </motion.div>
         {/* Vignette */}
-        <div className="absolute inset-0 bg-black/55 sm:bg-black/45" />
+        <div className="absolute inset-0 bg-black/60 sm:bg-black/45" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-12 sm:py-20">
         {/* Section Header with Reveal */}
-        <div className="mb-8 sm:mb-10 max-w-3xl space-y-2.5">
+        <div className="mb-6 sm:mb-10 max-w-3xl space-y-2.5">
           <div className="overflow-hidden">
             <motion.div
               initial={{ y: '100%', opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
+              className="inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+              <span className="text-[10px] sm:text-xs text-white tracking-[0.2em] uppercase font-bold font-mono">
                 MANUFACTURING INFRASTRUCTURE
               </span>
             </motion.div>
@@ -102,7 +102,7 @@ export const FacilitiesSection: FC = () => {
               initial={{ y: '100%', opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight drop-shadow-2xl"
             >
               ADVANCED MACHINING FACILITIES
@@ -113,23 +113,23 @@ export const FacilitiesSection: FC = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.16 }}
             className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed"
           >
             Equipped with heavy-duty vertical & horizontal turning, multi-axis simultaneous milling, sub-micron CMM metrology, and inert welding facilities at Hardware Park, Hyderabad.
           </motion.p>
         </div>
 
-        {/* 8 Equipment Cards with Viewport Animation */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+        {/* 8 Equipment Cards: Responsive on all viewports */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {facilitiesList.map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-20px' }}
-              transition={{ duration: 0.45, delay: idx * 0.05 }}
-              className="group p-4.5 sm:p-5 rounded-xs bg-slate-950/95 sm:bg-black/70 backdrop-blur-xl border border-slate-800/90 sm:border-white/20 lg:hover:border-white lg:hover:bg-black/90 transition-all duration-300 flex flex-col justify-between"
+              transition={{ duration: 0.4, delay: idx * 0.04 }}
+              className="group p-4 sm:p-5 rounded-xs bg-slate-950/95 sm:bg-black/75 backdrop-blur-xl border border-slate-800/90 sm:border-white/20 lg:hover:border-white lg:hover:bg-black/90 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between text-[10px] text-slate-400 tracking-wider uppercase font-semibold font-mono mb-2 group-hover:text-white transition-colors">
@@ -142,11 +142,11 @@ export const FacilitiesSection: FC = () => {
                 </h3>
 
                 <div className="flex flex-wrap gap-1.5 mb-2.5">
-                  <div className="inline-block px-2.5 py-1 rounded-xs bg-white/10 border border-white/25 text-[11px] sm:text-xs text-slate-100 font-bold">
+                  <div className="inline-block px-2.5 py-1 rounded-xs bg-white/10 border border-white/25 text-[10px] sm:text-xs text-slate-100 font-bold">
                     {item.capacity}
                   </div>
                   {item.subBadge && (
-                    <div className="inline-block px-2 py-1 rounded-xs bg-white/15 border border-white/30 text-[10px] text-white font-semibold">
+                    <div className="inline-block px-2 py-1 rounded-xs bg-white/15 border border-white/30 text-[9px] sm:text-[10px] text-white font-semibold">
                       {item.subBadge}
                     </div>
                   )}

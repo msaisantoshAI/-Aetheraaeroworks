@@ -14,7 +14,7 @@ export const Footer: FC = () => {
   };
 
   return (
-    <footer className="relative w-full text-white border-t border-white/20 pt-16 pb-12 overflow-hidden">
+    <footer className="relative w-full text-white border-t border-white/20 pt-12 sm:pt-16 pb-10 sm:pb-12 overflow-hidden">
       {/* Footer Orbital Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
@@ -29,7 +29,7 @@ export const Footer: FC = () => {
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-20">
         {/* Top Row: Brand & Back to Top */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-10 border-b border-white/15">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pb-8 sm:pb-10 border-b border-white/15">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2.5">
               <img
@@ -56,10 +56,10 @@ export const Footer: FC = () => {
         </div>
 
         {/* Middle Row: Domains, Facility & Official Contact */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-10 border-b border-white/15 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 py-8 sm:py-10 border-b border-white/15 text-xs">
           {/* Domains */}
           <div className="md:col-span-4 space-y-2">
-            <div className="text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
+            <div className="text-[10px] sm:text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
               INDUSTRY DOMAINS
             </div>
             <div className="text-sm text-white tracking-wider font-bold">
@@ -71,8 +71,8 @@ export const Footer: FC = () => {
           </div>
 
           {/* Facility & Contact Address */}
-          <div className="md:col-span-4 space-y-2.5">
-            <div className="text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
+          <div className="md:col-span-4 space-y-2">
+            <div className="text-[10px] sm:text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
               FACILITY & CONTACT
             </div>
             <div className="flex items-start gap-2 text-xs sm:text-sm text-slate-100 font-medium">
@@ -86,7 +86,7 @@ export const Footer: FC = () => {
               <Mail className="w-4 h-4 text-white shrink-0" />
               <a
                 href="mailto:aetheraaeroworksllp7@gmail.com"
-                className="hover:underline font-mono text-slate-100 hover:text-white"
+                className="hover:underline font-mono text-slate-100 hover:text-white break-all sm:break-normal"
               >
                 aetheraaeroworksllp7@gmail.com
               </a>
@@ -95,10 +95,10 @@ export const Footer: FC = () => {
 
           {/* Direct Navigation */}
           <div className="md:col-span-4 space-y-2">
-            <div className="text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
+            <div className="text-[10px] sm:text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
               DIRECT ACCESS
             </div>
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-300 font-medium">
+            <div className="flex flex-wrap gap-x-4 sm:gap-x-5 gap-y-2 text-xs text-slate-300 font-medium">
               <button
                 onClick={() => scrollToSection('home')}
                 className="hover:text-white transition-colors uppercase font-semibold"
@@ -146,11 +146,11 @@ export const Footer: FC = () => {
         </div>
 
         {/* Bottom Row: QMS Compliance Note & Copyright */}
-        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400 font-medium">
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400 font-medium text-center md:text-left">
           <div>
             &copy; {new Date().getFullYear()} Aethera Aero Works. All Rights Reserved.
           </div>
-          <div className="text-center md:text-right text-xs text-slate-300">
+          <div className="text-xs text-slate-300">
             *Quality Architecture: Pursuing AS9100D and ISO 9001:2015 Standards.
           </div>
         </div>

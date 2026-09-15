@@ -21,20 +21,20 @@ export const WhyUsSection: FC = () => {
     offset: ['start end', 'end start'],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
-  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.14, 1.05, 1.14]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1.04, 1.1]);
 
   return (
     <section
       ref={containerRef}
       id="why-us"
-      className="relative min-h-[90vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
+      className="relative min-h-[85vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
     >
       {/* Parallax Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div
           style={{ y: bgY, scale: bgScale }}
-          className="relative w-full h-full"
+          className="relative w-full h-full will-change-transform"
         >
           <img
             src="/images/media_1789103249800.jpg"
@@ -47,21 +47,21 @@ export const WhyUsSection: FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/35" />
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-12 sm:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Left-Aligned Technical Partnership Content */}
-          <div className="lg:col-span-8 space-y-6">
-            <div className="space-y-3">
+          <div className="lg:col-span-8 space-y-4 sm:space-y-6">
+            <div className="space-y-2.5 sm:space-y-3">
               <div className="overflow-hidden">
                 <motion.div
                   initial={{ y: '100%', opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
-                  className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
+                  className="inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+                  <span className="text-[10px] sm:text-xs text-white tracking-[0.2em] uppercase font-bold font-mono">
                     TECHNICAL PARTNERSHIP
                   </span>
                 </motion.div>
@@ -72,7 +72,7 @@ export const WhyUsSection: FC = () => {
                   initial={{ y: '100%', opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight drop-shadow-2xl"
                 >
                   WHY PARTNER WITH AETHERA?
@@ -87,7 +87,7 @@ export const WhyUsSection: FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.16 }}
                 className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md max-w-2xl"
               >
                 Whether you need a single complex prototype, development component, critical replacement part, or production quantities, Aethera Aero Works is equipped and committed to supporting your requirements with precision and speed.
@@ -95,18 +95,18 @@ export const WhyUsSection: FC = () => {
             </div>
 
             {/* 8 Text-Only Technical Partnership Points */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 sm:gap-y-3.5 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 sm:gap-y-3.5 pt-1">
               {advantages.map((adv, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: idx * 0.04 }}
-                  className="flex items-start gap-3 text-left"
+                  transition={{ duration: 0.35, delay: idx * 0.03 }}
+                  className="flex items-start gap-2.5 sm:gap-3 text-left"
                 >
-                  <div className="w-4.5 h-4.5 rounded-full bg-white/15 border border-white/40 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-white stroke-[3]" />
+                  <div className="w-4 h-4 rounded-full bg-white/15 border border-white/40 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-2.5 h-2.5 text-white stroke-[3]" />
                   </div>
                   <span className="text-xs sm:text-sm text-slate-100 font-normal leading-snug drop-shadow-md">
                     {adv}

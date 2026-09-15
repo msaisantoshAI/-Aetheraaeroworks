@@ -142,18 +142,18 @@ const StackingCapabilityCard: FC<StackingCardProps> = ({ product, index, onSelec
     offset: ['start end', 'end start'],
   });
 
-  const imgY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
-  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.12, 1.04, 1.12]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1.03, 1.1]);
 
   return (
     <div
       ref={cardRef}
-      className="sticky top-20 sm:top-24 mb-12 sm:mb-20 w-full"
+      className="relative md:sticky md:top-24 mb-8 sm:mb-12 md:mb-20 w-full"
       style={{
         zIndex: index + 10,
       }}
     >
-      <div className="relative min-h-[78vh] sm:min-h-[82vh] w-full rounded-xl sm:rounded-2xl overflow-hidden border border-white/20 bg-[#090b0e] shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9)] flex flex-col justify-center select-none">
+      <div className="relative min-h-[540px] sm:min-h-[580px] md:min-h-[72vh] lg:min-h-[78vh] w-full rounded-xl sm:rounded-2xl overflow-hidden border border-white/20 bg-[#090b0e] shadow-[0_20px_50px_-10px_rgba(0,0,0,0.95)] flex flex-col justify-center select-none">
         {/* Parallax Background Layer within Card */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -163,26 +163,26 @@ const StackingCapabilityCard: FC<StackingCardProps> = ({ product, index, onSelec
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
+              className="w-full h-full object-cover object-center filter brightness-[0.82] sm:brightness-[0.9] contrast-[1.05]"
             />
           </motion.div>
 
-          {/* Gradients */}
+          {/* Gradients tailored for mobile readability */}
           <div
             className={`absolute inset-0 bg-gradient-to-r ${
               isRightAligned
-                ? 'from-black/95 via-black/85 sm:from-transparent sm:via-black/45 sm:to-black/95'
-                : 'from-black/95 via-black/85 sm:via-black/45 sm:to-transparent'
+                ? 'from-black/95 via-black/90 sm:from-transparent sm:via-black/50 sm:to-black/95'
+                : 'from-black/95 via-black/90 sm:via-black/50 sm:to-transparent'
             }`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-black/30 to-black/50" />
         </div>
 
-        {/* Card Content Overlay */}
-        <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 w-full py-12 sm:py-16">
+        {/* Card Content Overlay: Scaled padding and typography for all screens */}
+        <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-14 w-full py-8 sm:py-12 md:py-14">
           <div
-            className={`max-w-2xl space-y-4 ${
-              isRightAligned ? 'lg:ml-auto text-left' : 'lg:mr-auto text-left'
+            className={`max-w-2xl space-y-3 sm:space-y-4 ${
+              isRightAligned ? 'md:ml-auto text-left' : 'md:mr-auto text-left'
             }`}
           >
             {/* Capability Tag with Reveal */}
@@ -192,10 +192,10 @@ const StackingCapabilityCard: FC<StackingCardProps> = ({ product, index, onSelec
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
+                className="inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1 rounded-xs bg-slate-950/95 sm:bg-black/70 border border-white/30 backdrop-blur-xl"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+                <span className="text-[10px] sm:text-xs text-white tracking-[0.2em] uppercase font-bold font-mono">
                   CAPABILITY // {product.num} • {product.category}
                 </span>
               </motion.div>
@@ -207,8 +207,8 @@ const StackingCapabilityCard: FC<StackingCardProps> = ({ product, index, onSelec
                 initial={{ y: '100%', opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.05] sm:leading-[0.98] drop-shadow-2xl"
+                transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight sm:leading-[1.05] drop-shadow-2xl"
               >
                 {product.title}
               </motion.h3>
@@ -225,11 +225,11 @@ const StackingCapabilityCard: FC<StackingCardProps> = ({ product, index, onSelec
             </p>
 
             {/* Compact Spec Matrix Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 pt-1">
               {product.specifications.slice(0, 2).map((s, idx) => (
                 <div
                   key={idx}
-                  className="p-3 sm:p-3.5 bg-slate-950/95 sm:bg-black/70 border border-white/25 rounded-xs backdrop-blur-xl"
+                  className="p-2.5 sm:p-3 bg-slate-950/95 sm:bg-black/75 border border-white/25 rounded-xs backdrop-blur-xl"
                 >
                   <div className="text-[10px] sm:text-[11px] text-slate-300 uppercase font-semibold">
                     {s.label}
@@ -245,7 +245,7 @@ const StackingCapabilityCard: FC<StackingCardProps> = ({ product, index, onSelec
             <div className="pt-2">
               <button
                 onClick={() => onSelect(product)}
-                className="liquid-btn liquid-btn-white inline-flex items-center justify-center px-8 py-3.5 text-xs sm:text-sm font-bold tracking-[0.18em] uppercase rounded-xs shadow-2xl"
+                className="liquid-btn liquid-btn-white w-full sm:w-auto inline-flex items-center justify-center px-7 sm:px-8 py-3.5 text-xs sm:text-sm font-bold tracking-[0.18em] uppercase rounded-xs shadow-2xl"
               >
                 <span>EXPLORE SPECS</span>
               </button>
@@ -261,15 +261,15 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
   return (
     <div id="what-we-make" className="w-full relative z-10 border-t border-white/15 bg-[#0c0e12]">
       {/* Section Header */}
-      <div className="bg-[#090b0e] py-12 sm:py-16 px-4 sm:px-8 lg:px-16 text-center border-b border-white/15">
-        <div className="max-w-4xl mx-auto space-y-2.5">
+      <div className="bg-[#090b0e] py-10 sm:py-14 px-4 sm:px-8 lg:px-16 text-center border-b border-white/15">
+        <div className="max-w-4xl mx-auto space-y-2 sm:space-y-2.5">
           <div className="overflow-hidden">
             <motion.div
               initial={{ y: '100%', opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-[11px] sm:text-xs text-slate-300 tracking-[0.25em] uppercase font-bold font-mono"
+              className="text-[10px] sm:text-xs text-slate-300 tracking-[0.25em] uppercase font-bold font-mono"
             >
               OUR CORE CAPABILITIES
             </motion.div>
@@ -279,7 +279,7 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
               initial={{ y: '100%', opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight"
             >
               WHAT WE MAKE
@@ -289,8 +289,8 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto font-light leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.16 }}
+            className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto font-light leading-relaxed px-2"
           >
             High-precision machining and manufacturing of mission-critical components for Defense, Aerospace, and Power Generation.
           </motion.p>
@@ -298,7 +298,7 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
       </div>
 
       {/* Sticky Stacking Cards Slider Container */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-10 sm:py-16">
+      <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-12 py-8 sm:py-12 md:py-16">
         {productsList.map((prod, idx) => (
           <StackingCapabilityCard
             key={prod.id}

@@ -42,20 +42,20 @@ export const ProcessSection: FC = () => {
     offset: ['start end', 'end start'],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
-  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.14, 1.05, 1.14]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1.04, 1.1]);
 
   return (
     <section
       ref={containerRef}
       id="process"
-      className="relative min-h-[95vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
+      className="relative min-h-[90vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
     >
       {/* Parallax Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <motion.div
           style={{ y: bgY, scale: bgScale }}
-          className="relative w-full h-full"
+          className="relative w-full h-full will-change-transform"
         >
           <img
             src="/images/media_1789103250031.jpg"
@@ -68,25 +68,25 @@ export const ProcessSection: FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/35" />
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-12 sm:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column (Blueprint visual on desktop) */}
           <div className="hidden lg:block lg:col-span-4" />
 
           {/* Right Column: Connected Pipeline Workflow Layout */}
-          <div className="lg:col-span-8 space-y-6">
+          <div className="lg:col-span-8 space-y-5 sm:space-y-6">
             {/* Header Block with Reveal */}
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               <div className="overflow-hidden">
                 <motion.div
                   initial={{ y: '100%', opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
-                  className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
+                  className="inline-flex items-center gap-2 px-2.5 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+                  <span className="text-[10px] sm:text-xs text-white tracking-[0.2em] uppercase font-bold font-mono">
                     END-TO-END WORKFLOW
                   </span>
                 </motion.div>
@@ -97,7 +97,7 @@ export const ProcessSection: FC = () => {
                   initial={{ y: '100%', opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight drop-shadow-2xl"
                 >
                   FROM DRAWING TO DELIVERED COMPONENT
@@ -108,7 +108,7 @@ export const ProcessSection: FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.16 }}
                 className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md max-w-2xl"
               >
                 We support customers through the complete manufacturing cycle. Our engineering team works closely with customers to understand component requirements, manufacturing challenges, quality expectations, and delivery schedules.
@@ -116,15 +116,15 @@ export const ProcessSection: FC = () => {
             </div>
 
             {/* Step Pipeline Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3 pt-1">
               {processSteps.map((item, idx) => (
                 <motion.div
                   key={item.step}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="group relative p-4 rounded-xs bg-slate-950/95 sm:bg-black/70 backdrop-blur-xl border border-slate-800/90 sm:border-white/20 lg:hover:border-white lg:hover:bg-black/90 transition-all duration-300 flex flex-col justify-between"
+                  transition={{ duration: 0.4, delay: idx * 0.04 }}
+                  className="group relative p-3.5 sm:p-4 rounded-xs bg-slate-950/95 sm:bg-black/70 backdrop-blur-xl border border-slate-800/90 sm:border-white/20 lg:hover:border-white lg:hover:bg-black/90 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     {/* Step Tracker Header */}
@@ -149,7 +149,7 @@ export const ProcessSection: FC = () => {
                   </div>
 
                   {/* Micro Progress Bar on Card Bottom */}
-                  <div className="mt-3.5 pt-2 border-t border-white/10 flex items-center justify-between text-[9px] text-slate-400 font-medium font-mono">
+                  <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[9px] text-slate-400 font-medium font-mono">
                     <span className="tracking-wider uppercase">FLOW MILESTONE</span>
                     <span className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover:bg-white animate-pulse" />
                   </div>
