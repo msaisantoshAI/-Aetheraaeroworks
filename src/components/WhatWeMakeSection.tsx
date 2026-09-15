@@ -1,5 +1,5 @@
-import type { FC } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, type FC } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import type { ProductDetail } from './ProductModal';
 
 interface WhatWeMakeProps {
@@ -126,130 +126,189 @@ const productsList: ProductDetail[] = [
   },
 ];
 
-export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
+interface StackingCardProps {
+  product: ProductDetail;
+  index: number;
+  total: number;
+  onSelect: (p: ProductDetail) => void;
+}
+
+const StackingCapabilityCard: FC<StackingCardProps> = ({ product, index, onSelect }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isRightAligned = index === 0;
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.12, 1.04, 1.12]);
+
   return (
-    <div id="what-we-make" className="w-full relative z-10 border-t border-white/15">
-      {/* Section Header */}
-      <div className="bg-[#090b0e] py-12 sm:py-14 px-4 sm:px-8 lg:px-16 text-center border-b border-white/15">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto space-y-2.5"
-        >
-          <div className="text-[11px] sm:text-xs text-slate-300 tracking-[0.25em] uppercase font-bold font-mono">
-            OUR CORE CAPABILITIES
-          </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight">
-            WHAT WE MAKE
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
-            High-precision machining and manufacturing of mission-critical components for Defense, Aerospace, and Power Generation.
-          </p>
-        </motion.div>
-      </div>
-
-      {/* 3 Full-Bleed Capability Blocks */}
-      {productsList.map((prod, index) => {
-        const isRightAligned = index === 0;
-
-        return (
-          <section
-            key={prod.id}
-            className="relative min-h-[85vh] w-full flex flex-col justify-center text-white border-b border-white/15 overflow-hidden select-none"
+    <div
+      ref={cardRef}
+      className="sticky top-20 sm:top-24 mb-12 sm:mb-20 w-full"
+      style={{
+        zIndex: index + 10,
+      }}
+    >
+      <div className="relative min-h-[78vh] sm:min-h-[82vh] w-full rounded-xl sm:rounded-2xl overflow-hidden border border-white/20 bg-[#090b0e] shadow-[0_30px_70px_-15px_rgba(0,0,0,0.9)] flex flex-col justify-center select-none">
+        {/* Parallax Background Layer within Card */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div
+            style={{ y: imgY, scale: imgScale }}
+            className="relative w-full h-full"
           >
-            {/* Full-Bleed Background Image */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              <img
-                src={prod.image}
-                alt={prod.title}
-                className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
-              />
-              {/* High-density gradient on mobile for maximum contrast */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-r ${
-                  isRightAligned
-                    ? 'from-black/90 via-black/80 sm:from-transparent sm:via-black/45 sm:to-black/90'
-                    : 'from-black/95 via-black/80 sm:via-black/45 sm:to-transparent'
-                }`}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
-            </div>
+            <img
+              src={product.image}
+              alt={product.title}
+              className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
+            />
+          </motion.div>
 
-            {/* Overlaid Content */}
-            <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
+          {/* Gradients */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-r ${
+              isRightAligned
+                ? 'from-black/95 via-black/85 sm:from-transparent sm:via-black/45 sm:to-black/95'
+                : 'from-black/95 via-black/85 sm:via-black/45 sm:to-transparent'
+            }`}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
+        </div>
+
+        {/* Card Content Overlay */}
+        <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 w-full py-12 sm:py-16">
+          <div
+            className={`max-w-2xl space-y-4 ${
+              isRightAligned ? 'lg:ml-auto text-left' : 'lg:mr-auto text-left'
+            }`}
+          >
+            {/* Capability Tag with Reveal */}
+            <div className="overflow-hidden">
               <motion.div
-                initial={{ opacity: 0, x: isRightAligned ? 25 : -25 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className={`max-w-2xl space-y-4 ${
-                  isRightAligned ? 'lg:ml-auto text-left' : 'lg:mr-auto text-left'
-                }`}
+                initial={{ y: '100%', opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
               >
-                {/* Capability Number & Category */}
-                <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
-                    CAPABILITY // {prod.num} • {prod.category}
-                  </span>
-                </div>
-
-                {/* Big Title */}
-                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.08] sm:leading-[0.98] drop-shadow-2xl">
-                  {prod.title}
-                </h3>
-
-                {/* Subtitle */}
-                <div className="text-xs sm:text-sm text-slate-200 font-semibold tracking-wider uppercase font-mono">
-                  {prod.subtitle}
-                </div>
-
-                {/* Concise Articulation */}
-                {prod.id === 'defence-missile-components' ? (
-                  <div className="space-y-2 text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md">
-                    <p>
-                      Our intended manufacturing capabilities include control surfaces, stabiliser fins, precision structural components, rocket motors, missile air frames, aerospace & defence sub-assemblies, and other high-precision engineering components.
-                    </p>
-                  </div>
-                ) : (
-                  <p className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md">
-                    {prod.overview}
-                  </p>
-                )}
-
-                {/* Compact Spec Matrix Badges: Solid dark on mobile */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
-                  {prod.specifications.slice(0, 2).map((s, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3 sm:p-3.5 bg-slate-950/95 sm:bg-black/70 border border-white/25 rounded-xs backdrop-blur-xl"
-                    >
-                      <div className="text-[10px] sm:text-[11px] text-slate-300 uppercase font-semibold">
-                        {s.label}
-                      </div>
-                      <div className="text-xs sm:text-sm text-white font-bold mt-0.5">
-                        {s.value}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Action CTA */}
-                <div className="pt-2">
-                  <button
-                    onClick={() => onSelectProduct(prod)}
-                    className="inline-flex items-center justify-center px-7 sm:px-8 py-3.5 bg-white text-black hover:bg-neutral-200 active:bg-neutral-300 text-xs sm:text-sm font-bold tracking-[0.18em] uppercase rounded-xs transition-all duration-200 shadow-2xl"
-                  >
-                    EXPLORE SPECS
-                  </button>
-                </div>
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+                  CAPABILITY // {product.num} • {product.category}
+                </span>
               </motion.div>
             </div>
-          </section>
-        );
-      })}
+
+            {/* Title with Scroll-on-Reveal */}
+            <div className="overflow-hidden">
+              <motion.h3
+                initial={{ y: '100%', opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.05] sm:leading-[0.98] drop-shadow-2xl"
+              >
+                {product.title}
+              </motion.h3>
+            </div>
+
+            {/* Subtitle */}
+            <div className="text-xs sm:text-sm text-slate-200 font-semibold tracking-wider uppercase font-mono">
+              {product.subtitle}
+            </div>
+
+            {/* Description */}
+            <p className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md">
+              {product.overview}
+            </p>
+
+            {/* Compact Spec Matrix Badges */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
+              {product.specifications.slice(0, 2).map((s, idx) => (
+                <div
+                  key={idx}
+                  className="p-3 sm:p-3.5 bg-slate-950/95 sm:bg-black/70 border border-white/25 rounded-xs backdrop-blur-xl"
+                >
+                  <div className="text-[10px] sm:text-[11px] text-slate-300 uppercase font-semibold">
+                    {s.label}
+                  </div>
+                  <div className="text-xs sm:text-sm text-white font-bold mt-0.5">
+                    {s.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Liquid Fill Explore Specs Button */}
+            <div className="pt-2">
+              <button
+                onClick={() => onSelect(product)}
+                className="liquid-btn liquid-btn-white inline-flex items-center justify-center px-8 py-3.5 text-xs sm:text-sm font-bold tracking-[0.18em] uppercase rounded-xs shadow-2xl"
+              >
+                <span>EXPLORE SPECS</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
+  return (
+    <div id="what-we-make" className="w-full relative z-10 border-t border-white/15 bg-[#0c0e12]">
+      {/* Section Header */}
+      <div className="bg-[#090b0e] py-12 sm:py-16 px-4 sm:px-8 lg:px-16 text-center border-b border-white/15">
+        <div className="max-w-4xl mx-auto space-y-2.5">
+          <div className="overflow-hidden">
+            <motion.div
+              initial={{ y: '100%', opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-[11px] sm:text-xs text-slate-300 tracking-[0.25em] uppercase font-bold font-mono"
+            >
+              OUR CORE CAPABILITIES
+            </motion.div>
+          </div>
+          <div className="overflow-hidden">
+            <motion.h2
+              initial={{ y: '100%', opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight"
+            >
+              WHAT WE MAKE
+            </motion.h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto font-light leading-relaxed"
+          >
+            High-precision machining and manufacturing of mission-critical components for Defense, Aerospace, and Power Generation.
+          </motion.p>
+        </div>
+      </div>
+
+      {/* Sticky Stacking Cards Slider Container */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-10 sm:py-16">
+        {productsList.map((prod, idx) => (
+          <StackingCapabilityCard
+            key={prod.id}
+            product={prod}
+            index={idx}
+            total={productsList.length}
+            onSelect={onSelectProduct}
+          />
+        ))}
+      </div>
     </div>
   );
 };

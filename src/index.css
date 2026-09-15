@@ -15,7 +15,9 @@
   font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif !important;
 }
 
-
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background-color: #0c0e12;
@@ -56,4 +58,90 @@ body {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+/* ========================================================
+   LIQUID FILL BUTTON EFFECTS
+   ======================================================== */
+.liquid-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.45s ease, 
+              box-shadow 0.45s ease,
+              transform 0.2s ease;
+}
+
+.liquid-btn:active {
+  transform: scale(0.97);
+}
+
+/* White Liquid Button (Black text on White, Liquid Dark fill on hover) */
+.liquid-btn-white {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+}
+
+.liquid-btn-white::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -25%;
+  width: 150%;
+  height: 260%;
+  background: #090b0e;
+  border-radius: 42%;
+  z-index: -1;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
+              top 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: rotate(0deg);
+}
+
+.liquid-btn-white:hover::before,
+.liquid-btn-white:active::before {
+  top: -80%;
+  transform: rotate(180deg);
+}
+
+.liquid-btn-white:hover {
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+/* Dark Glass Liquid Button (White text on Dark Glass, Liquid White fill on hover) */
+.liquid-btn-dark {
+  background-color: rgba(9, 11, 14, 0.85);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.liquid-btn-dark::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -25%;
+  width: 150%;
+  height: 260%;
+  background: #ffffff;
+  border-radius: 42%;
+  z-index: -1;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), 
+              top 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: rotate(0deg);
+}
+
+.liquid-btn-dark:hover::before,
+.liquid-btn-dark:active::before {
+  top: -80%;
+  transform: rotate(180deg);
+}
+
+.liquid-btn-dark:hover {
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
 }

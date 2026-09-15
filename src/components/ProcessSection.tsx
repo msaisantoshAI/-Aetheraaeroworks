@@ -1,9 +1,5 @@
-import type { FC } from 'react';
-import { motion } from 'framer-motion';
-
-interface ProcessSectionProps {
-  onOpenProjectModal?: () => void;
-}
+import { useRef, type FC } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const processSteps = [
   {
@@ -38,53 +34,88 @@ const processSteps = [
   },
 ];
 
-export const ProcessSection: FC<ProcessSectionProps> = () => {
+export const ProcessSection: FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.14, 1.05, 1.14]);
+
   return (
-    <section id="process" className="relative min-h-[95vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none">
-      {/* Full-Bleed Background Image */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          src="/images/media_1789103250031.jpg"
-          alt="Engineers sketching blueprints and reviewing precision CAD components"
-          className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
-        />
-        {/* High-density gradient on mobile for text clarity */}
+    <section
+      ref={containerRef}
+      id="process"
+      className="relative min-h-[95vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
+    >
+      {/* Parallax Background Layer */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div
+          style={{ y: bgY, scale: bgScale }}
+          className="relative w-full h-full"
+        >
+          <img
+            src="/images/media_1789103250031.jpg"
+            alt="Engineers sketching blueprints and reviewing precision CAD components"
+            className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
+          />
+        </motion.div>
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 sm:from-transparent sm:via-black/40 sm:to-black/90" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/35" />
       </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Column (Unobstructed blueprint visual on desktop) */}
+          {/* Left Column (Blueprint visual on desktop) */}
           <div className="hidden lg:block lg:col-span-4" />
 
           {/* Right Column: Connected Pipeline Workflow Layout */}
-          <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-8 space-y-6"
-          >
-            {/* Header Block */}
+          <div className="lg:col-span-8 space-y-6">
+            {/* Header Block with Reveal */}
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
-                  END-TO-END WORKFLOW
-                </span>
+              <div className="overflow-hidden">
+                <motion.div
+                  initial={{ y: '100%', opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+                    END-TO-END WORKFLOW
+                  </span>
+                </motion.div>
               </div>
 
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight drop-shadow-2xl">
-                FROM DRAWING TO DELIVERED COMPONENT
-              </h2>
+              <div className="overflow-hidden">
+                <motion.h2
+                  initial={{ y: '100%', opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight drop-shadow-2xl"
+                >
+                  FROM DRAWING TO DELIVERED COMPONENT
+                </motion.h2>
+              </div>
 
-              <p className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md max-w-2xl">
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md max-w-2xl"
+              >
                 We support customers through the complete manufacturing cycle. Our engineering team works closely with customers to understand component requirements, manufacturing challenges, quality expectations, and delivery schedules.
-              </p>
+              </motion.p>
             </div>
 
-            {/* Step Pipeline Grid: Darker cards on mobile, no sticky hover */}
+            {/* Step Pipeline Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
               {processSteps.map((item, idx) => (
                 <motion.div
@@ -125,7 +156,7 @@ export const ProcessSection: FC<ProcessSectionProps> = () => {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
-import type { FC } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, type FC } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const facilitiesList = [
   {
@@ -46,52 +46,89 @@ const facilitiesList = [
 ];
 
 export const FacilitiesSection: FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
+  const bgScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.14, 1.05, 1.14]);
+
   return (
-    <section id="facilities" className="relative min-h-[90vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none">
-      {/* Full-Bleed Background Machining Center Image */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
-          src="/images/cnc_5axis_machining_1789024600590.jpg"
-          alt="5-Axis CNC machining facility and advanced equipment"
-          className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
-        />
-        {/* Subtle Vignette for High Image Visibility and Crisp Contrast */}
+    <section
+      ref={containerRef}
+      id="facilities"
+      className="relative min-h-[90vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
+    >
+      {/* Parallax Background Layer */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.div
+          style={{ y: bgY, scale: bgScale }}
+          className="relative w-full h-full"
+        >
+          <img
+            src="/images/cnc_5axis_machining_1789024600590.jpg"
+            alt="5-Axis CNC machining facility and advanced equipment"
+            className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
+          />
+        </motion.div>
+        {/* Vignette */}
         <div className="absolute inset-0 bg-black/55 sm:bg-black/45" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
       </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 sm:mb-10 max-w-3xl"
-        >
-          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
-              MANUFACTURING INFRASTRUCTURE
-            </span>
+        {/* Section Header with Reveal */}
+        <div className="mb-8 sm:mb-10 max-w-3xl space-y-2.5">
+          <div className="overflow-hidden">
+            <motion.div
+              initial={{ y: '100%', opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+              <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+                MANUFACTURING INFRASTRUCTURE
+              </span>
+            </motion.div>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight mb-2.5 drop-shadow-2xl">
-            ADVANCED MACHINING FACILITIES
-          </h2>
-          <p className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed">
-            Equipped with heavy-duty vertical & horizontal turning, multi-axis simultaneous milling, sub-micron CMM metrology, and inert welding facilities at Hardware Park, Hyderabad.
-          </p>
-        </motion.div>
 
-        {/* 8 Equipment Cards: Solid Dark on Mobile, Hover Transition on Desktop */}
+          <div className="overflow-hidden">
+            <motion.h2
+              initial={{ y: '100%', opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight drop-shadow-2xl"
+            >
+              ADVANCED MACHINING FACILITIES
+            </motion.h2>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed"
+          >
+            Equipped with heavy-duty vertical & horizontal turning, multi-axis simultaneous milling, sub-micron CMM metrology, and inert welding facilities at Hardware Park, Hyderabad.
+          </motion.p>
+        </div>
+
+        {/* 8 Equipment Cards with Viewport Animation */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
           {facilitiesList.map((item, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              viewport={{ once: true, margin: '-20px' }}
+              transition={{ duration: 0.45, delay: idx * 0.05 }}
               className="group p-4.5 sm:p-5 rounded-xs bg-slate-950/95 sm:bg-black/70 backdrop-blur-xl border border-slate-800/90 sm:border-white/20 lg:hover:border-white lg:hover:bg-black/90 transition-all duration-300 flex flex-col justify-between"
             >
               <div>

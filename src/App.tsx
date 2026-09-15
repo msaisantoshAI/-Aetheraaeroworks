@@ -9,20 +9,12 @@ import { WhyUsSection } from './components/WhyUsSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ProductModal, type ProductDetail } from './components/ProductModal';
-import { ProjectModal } from './components/ProjectModal';
 import { StarfieldBackground } from './components/StarfieldBackground';
 import { Preloader } from './components/ManufacturingStrip';
 
 export function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedProduct, setSelectedProduct] = useState<ProductDetail | null>(null);
-  const [projectModalOpen, setProjectModalOpen] = useState<boolean>(false);
-  const [projectInitialFocus, setProjectInitialFocus] = useState<string | undefined>(undefined);
-
-  const handleOpenProjectModal = (focusProduct?: string) => {
-    setProjectInitialFocus(focusProduct);
-    setProjectModalOpen(true);
-  };
 
   const handleSelectProduct = (product: ProductDetail) => {
     setSelectedProduct(product);
@@ -41,47 +33,39 @@ export function App() {
       <StarfieldBackground />
 
       {/* Top Fixed Sticky Navigation Bar */}
-      <Navbar onOpenProjectModal={() => handleOpenProjectModal()} />
+      <Navbar />
 
       {/* Main Single Page Content */}
       <main className="flex-grow">
-        {/* 1. Hero Section (PRECISION ENGINEERED FOR TOMORROW) */}
-        <HeroSection onOpenProjectModal={() => handleOpenProjectModal()} />
+        {/* 1. Hero Section (Parallax & Reveal Effects) */}
+        <HeroSection />
 
-        {/* 2. About Section (ENGINEERING COMPLEXITY INTO PRECISION) */}
+        {/* 2. About Section (Parallax Specimen & Pillars) */}
         <AboutSection />
 
-        {/* 3. What We Make / Core Capabilities (TURBINE BLADES, CASINGS & ROTORS, DEFENSE COMPONENTS) */}
+        {/* 3. What We Make / Core Capabilities (Sticky Stacking Slider Transitions on Scroll) */}
         <WhatWeMakeSection onSelectProduct={handleSelectProduct} />
 
-        {/* 4. Advanced Machining Facilities */}
+        {/* 4. Advanced Machining Facilities (Parallax & Staggered Cards) */}
         <FacilitiesSection />
 
-        {/* 5. Process: From Drawing to Delivered Component */}
-        <ProcessSection onOpenProjectModal={() => handleOpenProjectModal()} />
+        {/* 5. Process: From Drawing to Delivered Component (Parallax & Reveal) */}
+        <ProcessSection />
 
-        {/* 6. Why Partner With Aethera? */}
-        <WhyUsSection onOpenProjectModal={() => handleOpenProjectModal()} />
+        {/* 6. Why Partner With Aethera? (Parallax Launchpad & Bullet Reveals) */}
+        <WhyUsSection />
 
-        {/* 7. Contact Section (LET'S BUILD YOUR NEXT COMPONENT) */}
-        <ContactSection onOpenProjectModal={() => handleOpenProjectModal()} />
+        {/* 7. Contact Section (Parallax Orbital Horizon & Direct Mail Channels) */}
+        <ContactSection />
       </main>
 
-      {/* 9. Footer (Address in bottom footer only) */}
+      {/* Footer */}
       <Footer />
 
       {/* Interactive Product Tech Dossier Modal */}
       <ProductModal
         product={selectedProduct}
         onClose={handleCloseProductModal}
-        onStartProject={(title) => handleOpenProjectModal(title)}
-      />
-
-      {/* Interactive Project Intake & CAD Transmission Modal */}
-      <ProjectModal
-        isOpen={projectModalOpen}
-        onClose={() => setProjectModalOpen(false)}
-        initialProductFocus={projectInitialFocus}
       />
     </div>
   );

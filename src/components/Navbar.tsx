@@ -2,11 +2,7 @@ import { useState, useEffect, type FC } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-interface NavbarProps {
-  onOpenProjectModal: () => void;
-}
-
-export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
+export const Navbar: FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -91,8 +87,8 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation Links (Clean Minimalist Bar) */}
+          <nav className="hidden lg:flex items-center space-x-1.5 xl:space-x-2">
             {[
               { id: 'home', label: 'HOME' },
               { id: 'about', label: 'ABOUT' },
@@ -105,7 +101,7 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-3 py-1.5 text-xs font-medium tracking-[0.16em] transition-all duration-200 rounded-xs ${
+                className={`relative px-3.5 py-1.5 text-xs font-medium tracking-[0.18em] transition-all duration-200 rounded-xs ${
                   activeSection === item.id
                     ? 'text-white bg-white/15 font-semibold shadow-inner'
                     : 'text-neutral-300 hover:text-white hover:bg-white/10'
@@ -119,17 +115,7 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
             ))}
           </nav>
 
-          {/* Right Action CTA (Clean RFQ Trigger) */}
-          <div className="hidden sm:flex items-center space-x-3">
-            <button
-              onClick={onOpenProjectModal}
-              className="relative inline-flex items-center px-4.5 py-2 bg-white text-black hover:bg-neutral-200 border border-white text-xs tracking-[0.18em] font-bold transition-all duration-200 rounded-xs shadow-md"
-            >
-              <span>REQUEST RFQ</span>
-            </button>
-          </div>
-
-          {/* Mobile Hamburger Toggle (44px min touch target) */}
+          {/* Mobile Hamburger Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2.5 -mr-1.5 text-neutral-200 hover:text-white focus:outline-none focus:ring-1 focus:ring-white/30 rounded-sm"
@@ -144,7 +130,7 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
       {/* Full-Screen Accessible Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-[#090b0e] flex flex-col justify-between p-6 pt-20 lg:hidden border-b border-white/15 overflow-y-auto">
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             <div className="text-[10px] tracking-[0.25em] text-neutral-400 uppercase pb-2 border-b border-white/15 font-bold font-mono">
               NAVIGATION
             </div>
@@ -155,7 +141,7 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
               { id: 'facilities', label: 'FACILITIES', desc: '3M VTL, 5-Axis CNC & Metrology Lab' },
               { id: 'process', label: 'PROCESS', desc: 'Drawing to Delivered Component' },
               { id: 'why-us', label: 'WHY AETHERA', desc: 'Technical Partnership & Support' },
-              { id: 'contact', label: 'CONTACT', desc: 'Direct Engineering Inquiry / RFQ' },
+              { id: 'contact', label: 'CONTACT', desc: 'Direct Engineering Inquiry' },
             ].map((item) => (
               <button
                 key={item.id}
@@ -172,17 +158,8 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
             ))}
           </div>
 
-          <div className="pt-5 border-t border-white/15 space-y-3">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenProjectModal();
-              }}
-              className="w-full py-3.5 bg-white text-black text-center text-xs tracking-[0.2em] font-bold rounded-xs active:bg-neutral-200 transition-colors shadow-lg"
-            >
-              REQUEST RFQ / SUBMIT DRAWING
-            </button>
-            <div className="text-[10px] text-neutral-300 flex justify-between font-medium">
+          <div className="pt-6 border-t border-white/15 space-y-2">
+            <div className="text-[11px] text-neutral-300 flex justify-between font-medium">
               <span>HARDWARE PARK, HYDERABAD</span>
               <span>DEFENSE • AEROSPACE • POWER</span>
             </div>

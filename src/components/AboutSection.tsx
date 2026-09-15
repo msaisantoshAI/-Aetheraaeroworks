@@ -1,47 +1,81 @@
-import type { FC } from 'react';
-import { motion } from 'framer-motion';
+import { useRef, type FC } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShieldCheck, MapPin } from 'lucide-react';
 
 export const AboutSection: FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], ['-15%', '15%']);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1.05, 1.15]);
+
   return (
     <div id="about" className="w-full relative z-10">
-      {/* 1. Main About Section (SpaceX Full-Bleed Background Layout - Floating Direct Text) */}
-      <section className="relative min-h-[85vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none">
-        {/* Background Image: 5-Axis Precision Specimen */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <img
-            src="/images/about_precision_part_1789038407420.jpg"
-            alt="5-Axis CNC machined aerospace monolithic components"
-            className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
-          />
-          {/* Directional gradient: High-density dark backdrop on mobile for WCAG AAA contrast */}
+      {/* 1. Main About Section with Parallax */}
+      <section
+        ref={containerRef}
+        className="relative min-h-[85vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none"
+      >
+        {/* Parallax Background Image */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div
+            style={{ y: imageY, scale: imageScale }}
+            className="relative w-full h-full"
+          >
+            <img
+              src="/images/about_precision_part_1789038407420.jpg"
+              alt="5-Axis CNC machined aerospace monolithic components"
+              className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
+            />
+          </motion.div>
+          {/* Directional gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 sm:via-black/55 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
         </div>
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl space-y-5 sm:space-y-6"
-          >
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-[11px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
-                ABOUT AETHERA AERO WORKS
-              </span>
+          <div className="max-w-2xl space-y-5 sm:space-y-6">
+            {/* Eyebrow Reveal */}
+            <div className="overflow-hidden">
+              <motion.div
+                initial={{ y: '100%', opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                <span className="text-[11px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
+                  ABOUT AETHERA AERO WORKS
+                </span>
+              </motion.div>
             </div>
 
-            {/* Headline */}
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.08] sm:leading-[0.98] drop-shadow-2xl">
-              ENGINEERING COMPLEXITY INTO PRECISION.
-            </h2>
+            {/* Headline with Text Scroll on Reveal */}
+            <div className="overflow-hidden">
+              <motion.h2
+                initial={{ y: '100%', opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.08] sm:leading-[0.98] drop-shadow-2xl"
+              >
+                ENGINEERING COMPLEXITY INTO PRECISION.
+              </motion.h2>
+            </div>
 
-            {/* Articulated Body Copy */}
-            <div className="space-y-3 text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-md">
+            {/* Articulated Body Copy with Reveal */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-3 text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-md"
+            >
               <p>
                 Aethera Aero Works is a dynamic engineering start-up established with a clear vision to serve the Defense, Aerospace and Power Generation sectors through advanced manufacturing, precision machining and engineering capabilities.
               </p>
@@ -51,10 +85,16 @@ export const AboutSection: FC = () => {
               <p>
                 With a highly motivated and experienced engineering team and modern manufacturing infrastructure, Aethera Aero Works is being developed as a one-stop precision manufacturing facility for complex and mission-critical components.
               </p>
-            </div>
+            </motion.div>
 
-            {/* Location & QMS Badges with Enhanced Mobile Clarity */}
-            <div className="pt-2 flex flex-wrap gap-2.5 sm:gap-3 text-xs text-slate-100 font-medium">
+            {/* Location & QMS Badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="pt-2 flex flex-wrap gap-2.5 sm:gap-3 text-xs text-slate-100 font-medium"
+            >
               <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/25 backdrop-blur-xl">
                 <MapPin className="w-4 h-4 text-white shrink-0" />
                 <span>Hardware Park, Hyderabad</span>
@@ -63,12 +103,12 @@ export const AboutSection: FC = () => {
                 <ShieldCheck className="w-4 h-4 text-white shrink-0" />
                 <span>Pursuing AS9100D & ISO 9001:2015</span>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* 2. Foundational Pillars Banner: High-Contrast Dark on Mobile, Crisp Minimalist on Desktop */}
+      {/* 2. Foundational Pillars Banner */}
       <section className="w-full bg-[#090b0e] sm:bg-white text-white sm:text-black py-10 sm:py-12 border-y border-white/15 sm:border-neutral-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-20">
           <div className="text-center mb-6">
@@ -80,7 +120,7 @@ export const AboutSection: FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 text-left">
             {/* 1. Precision */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -99,7 +139,7 @@ export const AboutSection: FC = () => {
 
             {/* 2. Engineering */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -118,7 +158,7 @@ export const AboutSection: FC = () => {
 
             {/* 3. Manufacturing */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
