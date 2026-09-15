@@ -130,15 +130,15 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
   return (
     <div id="what-we-make" className="w-full relative z-10 border-t border-white/15">
       {/* Section Header */}
-      <div className="bg-[#0c0e12] py-12 px-6 sm:px-10 lg:px-16 text-center border-b border-white/15">
-        <div className="max-w-4xl mx-auto space-y-2.5">
-          <div className="text-xs sm:text-sm text-neutral-300 tracking-[0.25em] uppercase font-bold">
+      <div className="bg-[#0c0e12] py-12 px-5 sm:px-10 lg:px-16 text-center border-b border-white/15">
+        <div className="max-w-4xl mx-auto space-y-3">
+          <div className="text-xs sm:text-sm text-neutral-200 tracking-[0.25em] uppercase font-bold">
             OUR CORE CAPABILITIES
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white leading-none">
             WHAT WE MAKE
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-300 max-w-2xl mx-auto font-light">
+          <p className="text-sm sm:text-base text-neutral-200 max-w-2xl mx-auto font-normal leading-relaxed">
             High-precision machining and manufacturing of mission-critical components for Defense, Aerospace, and Power Generation.
           </p>
         </div>
@@ -159,21 +159,21 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
               <img
                 src={prod.image}
                 alt={prod.title}
-                className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.05]"
+                className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.08]"
               />
-              {/* Subtle directional gradient so the component photography is bright and text is crisp */}
+              {/* Directional gradient so the component photography is bright and text is crisp */}
               <div
                 className={`absolute inset-0 bg-gradient-to-r ${
                   isRightAligned
-                    ? 'from-transparent via-black/45 to-black/90'
-                    : 'from-black/90 via-black/45 to-transparent'
+                    ? 'from-black/70 via-black/60 to-black/95 sm:from-transparent sm:via-black/50 sm:to-black/95'
+                    : 'from-black/95 via-black/60 to-black/70 sm:from-black/95 sm:via-black/50 sm:to-transparent'
                 }`}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12]/90 via-transparent to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
             </div>
 
-            {/* Overlaid Content (Direct Floating Text - No Clunky Box Container) */}
-            <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 w-full py-16 sm:py-20">
+            {/* Overlaid Content */}
+            <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 w-full py-16 sm:py-20">
               <motion.div
                 initial={{ opacity: 0, x: isRightAligned ? 30 : -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -184,47 +184,47 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
                 }`}
               >
                 {/* Capability Number & Category */}
-                <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-xs bg-black/60 border border-white/25 backdrop-blur-xl">
+                <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xs bg-black/75 border border-white/30 backdrop-blur-xl">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  <span className="text-xs text-white tracking-[0.25em] uppercase font-bold">
+                  <span className="text-xs sm:text-sm text-white tracking-[0.25em] uppercase font-bold">
                     CAPABILITY // {prod.num} • {prod.category}
                   </span>
                 </div>
 
-                {/* Big Title (Refined Scale) */}
-                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[0.98] drop-shadow-2xl">
+                {/* Big Title */}
+                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.08] drop-shadow-2xl">
                   {prod.title}
                 </h3>
 
                 {/* Subtitle */}
-                <div className="text-xs sm:text-sm text-neutral-300 font-semibold tracking-wider uppercase">
+                <div className="text-xs sm:text-sm text-neutral-200 font-semibold tracking-wider uppercase">
                   {prod.subtitle}
                 </div>
 
-                {/* Concise Articulation */}
+                {/* Concise Articulation (Industry standard body size) */}
                 {prod.id === 'defence-missile-components' ? (
-                  <div className="space-y-2 text-xs sm:text-sm text-neutral-200 font-light leading-relaxed drop-shadow-md">
+                  <div className="space-y-2 text-sm sm:text-base text-neutral-100 font-normal leading-relaxed drop-shadow-md">
                     <p>
                       Our intended manufacturing capabilities include control surfaces, stabiliser fins, precision structural components, rocket motors, missile air frames, aerospace & defence sub-assemblies, and other high-precision engineering components.
                     </p>
                   </div>
                 ) : (
-                  <p className="text-xs sm:text-sm text-neutral-200 font-light leading-relaxed drop-shadow-md">
+                  <p className="text-sm sm:text-base text-neutral-100 font-normal leading-relaxed drop-shadow-md">
                     {prod.overview}
                   </p>
                 )}
 
-                {/* Compact Spec Matrix Badges with Enhanced Blur */}
-                <div className="grid grid-cols-2 gap-3 pt-1">
+                {/* Compact Spec Matrix Badges with High Contrast */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                   {prod.specifications.slice(0, 2).map((s, idx) => (
                     <div
                       key={idx}
-                      className="p-3 bg-black/65 border border-white/25 rounded-xs backdrop-blur-xl"
+                      className="p-3.5 bg-black/80 border border-white/25 rounded-xs backdrop-blur-xl"
                     >
-                      <div className="text-[11px] text-neutral-300 uppercase font-semibold">
+                      <div className="text-xs text-neutral-300 uppercase font-semibold">
                         {s.label}
                       </div>
-                      <div className="text-xs sm:text-sm text-white font-bold mt-0.5">
+                      <div className="text-sm sm:text-base text-white font-bold mt-0.5">
                         {s.value}
                       </div>
                     </div>
@@ -235,7 +235,7 @@ export const WhatWeMakeSection: FC<WhatWeMakeProps> = ({ onSelectProduct }) => {
                 <div className="pt-2">
                   <button
                     onClick={() => onSelectProduct(prod)}
-                    className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-black hover:bg-neutral-200 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase rounded-xs transition-all duration-300 shadow-2xl"
+                    className="min-h-[48px] inline-flex items-center justify-center px-8 py-3.5 bg-white text-black hover:bg-neutral-200 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase rounded-xs transition-all duration-300 shadow-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                   >
                     EXPLORE SPECS
                   </button>

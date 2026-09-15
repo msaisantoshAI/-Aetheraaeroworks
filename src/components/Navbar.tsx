@@ -2,11 +2,7 @@ import { useState, useEffect, type FC } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-interface NavbarProps {
-  onOpenProjectModal: () => void;
-}
-
-export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
+export const Navbar: FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -70,29 +66,24 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20 flex items-center justify-between">
-          {/* Brand Logo / Left */}
+          {/* Brand Logo / Left: Sleek reduced logo + aetheraaeroworks */}
           <button
             onClick={() => scrollToSection('home')}
-            className="group flex items-center gap-3 text-left focus:outline-none"
-            aria-label="Aethera Aero Works Home"
+            className="group flex items-center gap-2.5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
+            aria-label="aetheraaeroworks home"
           >
             <img
               src="/images/logo-white.png"
-              alt="Aethera Aero Works Logo"
-              className="h-8 sm:h-9 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] group-hover:scale-105 transition-transform duration-300"
+              alt="aetheraaeroworks logo"
+              className="h-6 sm:h-7 w-auto object-contain filter drop-shadow-[0_0_6px_rgba(255,255,255,0.3)] group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="flex flex-col">
-              <span className="text-white font-bold tracking-[0.25em] text-sm sm:text-base leading-tight">
-                AETHERA
-              </span>
-              <span className="text-neutral-300 tracking-[0.2em] text-[10px] sm:text-[11px] uppercase font-medium">
-                AERO WORKS
-              </span>
-            </div>
+            <span className="text-white font-bold tracking-[0.22em] text-xs sm:text-sm uppercase group-hover:text-neutral-200 transition-colors">
+              aetheraaeroworks
+            </span>
           </button>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2" aria-label="Main Navigation">
             {[
               { id: 'home', label: 'HOME' },
               { id: 'about', label: 'ABOUT' },
@@ -105,10 +96,10 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-3.5 py-1.5 text-xs font-medium tracking-[0.18em] transition-all duration-300 rounded-sm ${
+                className={`relative px-3.5 py-2 text-xs font-medium tracking-[0.18em] transition-all duration-300 rounded-sm focus:outline-none focus-visible:ring-1 focus-visible:ring-white ${
                   activeSection === item.id
                     ? 'text-white bg-white/20 font-semibold'
-                    : 'text-neutral-300 hover:text-white hover:bg-white/10'
+                    : 'text-neutral-200 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {item.label}
@@ -119,21 +110,22 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
             ))}
           </nav>
 
-          {/* Right Action CTA */}
-          <div className="hidden sm:flex items-center space-x-4">
+          {/* Right Action / Direct Contact Link on Desktop */}
+          <div className="hidden lg:flex items-center">
             <button
-              onClick={onOpenProjectModal}
-              className="group relative inline-flex items-center px-5 py-2.5 bg-white text-black hover:bg-neutral-200 border border-white text-xs tracking-[0.2em] font-bold transition-all duration-300 rounded-sm shadow-md"
+              onClick={() => scrollToSection('contact')}
+              className="px-4 py-2 border border-white/40 hover:border-white text-white hover:bg-white hover:text-black text-xs font-bold tracking-[0.2em] uppercase rounded-xs transition-all duration-300"
             >
-              <span>START A PROJECT</span>
+              GET IN TOUCH
             </button>
           </div>
 
-          {/* Mobile Hamburger Toggle */}
+          {/* Mobile Hamburger Toggle (Accessible touch target >= 44x44px) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-neutral-300 hover:text-white focus:outline-none"
-            aria-label="Toggle Menu"
+            className="lg:hidden p-2.5 text-neutral-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -142,27 +134,27 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
 
       {/* Full-Screen Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0c0e12] flex flex-col justify-between p-6 pt-24 lg:hidden border-b border-white/15 overflow-y-auto">
+        <div className="fixed inset-0 z-40 bg-[#0c0e12]/98 backdrop-blur-2xl flex flex-col justify-between p-6 pt-24 lg:hidden border-b border-white/15 overflow-y-auto">
           <div className="space-y-4">
-            <div className="text-[11px] tracking-[0.25em] text-neutral-400 uppercase pb-2 border-b border-white/15 font-semibold">
+            <div className="text-xs tracking-[0.25em] text-neutral-300 uppercase pb-2 border-b border-white/15 font-bold">
               NAVIGATION
             </div>
             {[
               { id: 'home', label: 'HOME', desc: 'Precision Engineered for Tomorrow' },
               { id: 'about', label: 'ABOUT', desc: 'About Aethera Aero Works' },
-              { id: 'what-we-make', label: 'WHAT WE MAKE', desc: 'Our Core Capabilities' },
+              { id: 'what-we-make', label: 'WHAT WE MAKE', desc: 'Core Capabilities & Components' },
               { id: 'facilities', label: 'FACILITIES', desc: 'Advanced Machining Centers' },
               { id: 'process', label: 'PROCESS', desc: 'Drawing to Delivered Component' },
-              { id: 'why-us', label: 'WHY AETHERA', desc: 'Why Partner with Us' },
-              { id: 'contact', label: 'CONTACT', desc: 'Start a Project / RFQ' },
+              { id: 'why-us', label: 'WHY AETHERA', desc: 'Technical Partnership Advantages' },
+              { id: 'contact', label: 'CONTACT', desc: 'Direct Engineering Inquiry' },
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="w-full text-left py-2.5 border-b border-white/10 flex items-center justify-between group"
+                className="w-full text-left py-3 border-b border-white/10 flex items-center justify-between group focus:outline-none"
               >
                 <div>
-                  <span className="text-xl font-bold tracking-wider text-white group-hover:text-neutral-200 transition-colors">
+                  <span className="text-lg font-bold tracking-wider text-white group-hover:text-neutral-200 transition-colors">
                     {item.label}
                   </span>
                   <p className="text-xs text-neutral-300 mt-0.5">{item.desc}</p>
@@ -171,17 +163,14 @@ export const Navbar: FC<NavbarProps> = ({ onOpenProjectModal }) => {
             ))}
           </div>
 
-          <div className="pt-6 border-t border-white/15 space-y-4">
+          <div className="pt-6 border-t border-white/15 space-y-3">
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenProjectModal();
-              }}
-              className="w-full py-3.5 bg-white text-black text-center text-xs tracking-[0.2em] font-bold rounded-sm hover:bg-neutral-200 transition-colors shadow-lg"
+              onClick={() => scrollToSection('contact')}
+              className="w-full min-h-[48px] py-3.5 bg-white text-black text-center text-xs tracking-[0.2em] font-bold rounded-xs hover:bg-neutral-200 transition-colors shadow-lg"
             >
-              START A PROJECT
+              CONTACT ENGINEERING DESK
             </button>
-            <div className="text-[11px] text-neutral-300 flex justify-between font-medium">
+            <div className="text-xs text-neutral-300 flex flex-col gap-1 sm:flex-row sm:justify-between font-medium pt-1">
               <span>HARDWARE PARK, HYDERABAD</span>
               <span>DEFENSE • AEROSPACE • POWER</span>
             </div>

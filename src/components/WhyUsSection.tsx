@@ -2,10 +2,6 @@ import type { FC } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
-interface WhyUsProps {
-  onOpenProjectModal: () => void;
-}
-
 const advantages = [
   'Large and complex component machining',
   'High-precision CNC manufacturing',
@@ -17,7 +13,7 @@ const advantages = [
   'Strategic location at Hardware Park, Hyderabad',
 ];
 
-export const WhyUsSection: FC<WhyUsProps> = ({ onOpenProjectModal }) => {
+export const WhyUsSection: FC = () => {
   return (
     <section id="why-us" className="relative min-h-[90vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none">
       {/* Full-Bleed Background Image: Rocket Launchpad at Dusk */}
@@ -43,9 +39,9 @@ export const WhyUsSection: FC<WhyUsProps> = ({ onOpenProjectModal }) => {
             className="lg:col-span-8 space-y-6"
           >
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-xs bg-black/60 border border-white/25 backdrop-blur-xl">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xs bg-black/75 border border-white/30 backdrop-blur-xl">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span className="text-xs text-white tracking-[0.25em] uppercase font-bold">
+                <span className="text-xs sm:text-sm text-white tracking-[0.25em] uppercase font-bold">
                   TECHNICAL PARTNERSHIP
                 </span>
               </div>
@@ -54,43 +50,34 @@ export const WhyUsSection: FC<WhyUsProps> = ({ onOpenProjectModal }) => {
                 WHY PARTNER WITH AETHERA?
               </h2>
 
-              <div className="text-xs sm:text-sm text-neutral-300 font-semibold tracking-wider uppercase">
+              <div className="text-xs sm:text-sm text-neutral-200 font-semibold tracking-wider uppercase">
                 Your requirement. Our engineering challenge.
               </div>
 
-              <p className="text-xs sm:text-sm text-neutral-200 font-light leading-relaxed drop-shadow-md max-w-2xl">
+              <p className="text-sm sm:text-base text-neutral-100 font-normal leading-relaxed drop-shadow-md max-w-2xl">
                 Whether you need a single complex prototype, development component, critical replacement part, or production quantities, Aethera Aero Works is equipped and committed to supporting your requirements with precision and speed.
               </p>
             </div>
 
             {/* 8 Text-Only Technical Partnership Points (Strictly No Cards/Boxes) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3.5 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-2">
               {advantages.map((adv, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.06 }}
+                  transition={{ duration: 0.4, delay: idx * 0.05 }}
                   className="flex items-start gap-3 group text-left"
                 >
-                  <div className="w-4 h-4 rounded-full bg-white/10 border border-white/30 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-white transition-colors duration-300">
+                  <div className="w-4 h-4 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-white transition-colors duration-300">
                     <Check className="w-2.5 h-2.5 text-white group-hover:text-black stroke-[3] transition-colors" />
                   </div>
-                  <span className="text-xs sm:text-sm text-neutral-200 font-normal leading-snug drop-shadow-md group-hover:text-white transition-colors">
+                  <span className="text-sm sm:text-base text-neutral-100 font-normal leading-snug drop-shadow-md group-hover:text-white transition-colors">
                     {adv}
                   </span>
                 </motion.div>
               ))}
-            </div>
-
-            <div className="pt-2">
-              <button
-                onClick={onOpenProjectModal}
-                className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-black hover:bg-neutral-200 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase rounded-xs transition-all duration-300 shadow-2xl"
-              >
-                START A PROJECT
-              </button>
             </div>
           </motion.div>
 

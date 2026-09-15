@@ -104,10 +104,10 @@ export const ProjectModal: FC<ProjectModalProps> = ({ isOpen, onClose, initialPr
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-1">
                   <h3 className="text-xl font-bold uppercase tracking-tight text-white">
-                    START A PROJECT WITH AETHERA
+                    TRANSMIT ENGINEERING RFQ & DRAWINGS
                   </h3>
-                  <p className="text-xs sm:text-sm text-neutral-300">
-                    Submit component drawings (STEP, IGES, DXF, PDF) for manufacturability review and quotation.
+                  <p className="text-xs sm:text-sm text-neutral-200">
+                    Submit component drawings (STEP, IGES, DXF, PDF) for manufacturability review and formal quotation.
                   </p>
                 </div>
 

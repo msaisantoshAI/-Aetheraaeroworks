@@ -68,8 +68,13 @@ npm run preview
 ## 📍 Facility & Contact
 
 - **Facility Address**: Hardware Park, Hyderabad, Telangana, India (10 minutes from Rajiv Gandhi International Airport)
-- **Email / RFQ**: `rfq@aetheraaero.com` / `contact@aetheraaero.com`
-- **Repository**: [https://github.com/reddysantosh1112/Aetheraaeroworks.git](https://github.com/reddysantosh1112/Aetheraaeroworks.git)
+- **Email / RFQ**: `aetheraaeroworksllp7@gmail.com`
+- **Repositories**:
+  - [https://github.com/msaisantoshAI/-Aetheraaeroworks.git](https://github.com/msaisantoshAI/-Aetheraaeroworks.git)
+  - [https://github.com/msaisantoshAI/Aetheraaeroworks.git](https://github.com/msaisantoshAI/Aetheraaeroworks.git)
+- **Live Deployments**:
+  - [https://msaisantoshai.github.io/-Aetheraaeroworks/](https://msaisantoshai.github.io/-Aetheraaeroworks/)
+  - [https://msaisantoshai.github.io/Aetheraaeroworks/](https://msaisantoshai.github.io/Aetheraaeroworks/)
 
 ---
 

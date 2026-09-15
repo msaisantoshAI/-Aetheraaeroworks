@@ -1,10 +1,6 @@
 import type { FC } from 'react';
 import { motion } from 'framer-motion';
 
-interface ProcessSectionProps {
-  onOpenProjectModal?: () => void;
-}
-
 const processSteps = [
   {
     step: '01',
@@ -38,7 +34,7 @@ const processSteps = [
   },
 ];
 
-export const ProcessSection: FC<ProcessSectionProps> = ({ onOpenProjectModal }) => {
+export const ProcessSection: FC = () => {
   return (
     <section id="process" className="relative min-h-[95vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none">
       {/* Full-Bleed Background Image: Engineers Sketching & Reviewing CAD Blueprints */}
@@ -66,11 +62,11 @@ export const ProcessSection: FC<ProcessSectionProps> = ({ onOpenProjectModal }) 
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-8 space-y-6"
           >
-            {/* Header Block (Scaled Typography) */}
+            {/* Header Block */}
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-xs bg-black/60 border border-white/25 backdrop-blur-xl">
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xs bg-black/75 border border-white/30 backdrop-blur-xl">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span className="text-xs text-white tracking-[0.25em] uppercase font-bold">
+                <span className="text-xs sm:text-sm text-white tracking-[0.25em] uppercase font-bold">
                   END-TO-END WORKFLOW
                 </span>
               </div>
@@ -79,13 +75,13 @@ export const ProcessSection: FC<ProcessSectionProps> = ({ onOpenProjectModal }) 
                 FROM DRAWING TO DELIVERED COMPONENT
               </h2>
 
-              <p className="text-xs sm:text-sm text-neutral-200 font-light leading-relaxed drop-shadow-md max-w-2xl">
+              <p className="text-sm sm:text-base text-neutral-100 font-normal leading-relaxed drop-shadow-md max-w-2xl">
                 We support customers through the complete manufacturing cycle. Our engineering team works closely with customers to understand component requirements, manufacturing challenges, quality expectations, and delivery schedules.
               </p>
             </div>
 
-            {/* Connected Step Pipeline Track (Fresh Layout) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
+            {/* Connected Step Pipeline Track */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-1">
               {processSteps.map((item, idx) => (
                 <motion.div
                   key={item.step}
@@ -93,49 +89,38 @@ export const ProcessSection: FC<ProcessSectionProps> = ({ onOpenProjectModal }) 
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.06 }}
-                  className="group relative p-3.5 sm:p-4 rounded-xs bg-black/65 backdrop-blur-xl border border-white/20 hover:border-white hover:bg-black/85 transition-all duration-300 flex flex-col justify-between"
+                  className="group relative p-4 sm:p-5 rounded-xs bg-black/75 backdrop-blur-xl border border-white/25 hover:border-white hover:bg-black/90 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     {/* Step Tracker Header */}
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-[10px] font-bold text-neutral-400 group-hover:text-white transition-colors tracking-widest uppercase px-2 py-0.5 rounded-xs bg-white/10 border border-white/15">
+                    <div className="flex items-center justify-between mb-2.5">
+                      <span className="text-[11px] font-bold text-neutral-300 group-hover:text-white transition-colors tracking-widest uppercase px-2.5 py-0.5 rounded-xs bg-white/10 border border-white/20">
                         STAGE 0{idx + 1}
                       </span>
-                      <span className="text-[10px] text-neutral-400 font-mono group-hover:text-white transition-colors">
+                      <span className="text-xs text-neutral-300 font-mono group-hover:text-white transition-colors">
                         0{idx + 1}/06
                       </span>
                     </div>
 
                     {/* Step Title */}
-                    <h3 className="text-sm font-bold uppercase tracking-tight text-white mb-1 group-hover:text-white transition-colors">
+                    <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-white mb-1.5 group-hover:text-white transition-colors">
                       {item.name}
                     </h3>
 
                     {/* Step Description */}
-                    <p className="text-xs text-neutral-300 font-light leading-relaxed">
+                    <p className="text-xs sm:text-sm text-neutral-200 font-normal leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
 
                   {/* Micro Progress Bar on Card Bottom */}
-                  <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[9px] text-neutral-400 font-medium">
+                  <div className="mt-4 pt-2.5 border-t border-white/15 flex items-center justify-between text-[10px] sm:text-xs text-neutral-300 font-medium">
                     <span className="tracking-wider uppercase">FLOW MILESTONE</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover:bg-white animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-white/50 group-hover:bg-white animate-pulse" />
                   </div>
                 </motion.div>
               ))}
             </div>
-
-            {onOpenProjectModal && (
-              <div className="pt-2">
-                <button
-                  onClick={onOpenProjectModal}
-                  className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-black hover:bg-neutral-200 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase rounded-xs transition-all duration-300 shadow-2xl"
-                >
-                  START A PROJECT
-                </button>
-              </div>
-            )}
           </motion.div>
         </div>
       </div>

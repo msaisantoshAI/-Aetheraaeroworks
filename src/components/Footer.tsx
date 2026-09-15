@@ -30,59 +30,64 @@ export const Footer: FC = () => {
         {/* Top Row: Brand & Back to Top */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-14 border-b border-white/15">
           <div className="space-y-2">
-            <div className="flex items-center gap-3.5">
+            <div className="flex items-center gap-3">
               <img
                 src="/images/logo-white.png"
-                alt="Aethera Aero Works Logo"
-                className="h-9 sm:h-10 w-auto object-contain filter drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+                alt="aetheraaeroworks Logo"
+                className="h-7 sm:h-8 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
               />
-              <span className="text-lg sm:text-xl font-bold tracking-[0.25em] text-white uppercase">
-                AETHERA AERO WORKS
+              <span className="text-base sm:text-lg font-bold tracking-[0.25em] text-white uppercase">
+                aetheraaeroworks
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-neutral-300 tracking-wide font-normal">
+            <p className="text-xs sm:text-sm text-neutral-200 tracking-wide font-normal">
               Precision Engineering for a Stronger Tomorrow
             </p>
           </div>
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center text-xs font-bold text-neutral-200 hover:text-white transition-colors border border-white/30 px-6 py-3 rounded-sm hover:border-white bg-white/10 backdrop-blur-md"
+            className="inline-flex items-center text-xs font-bold text-white hover:text-black hover:bg-white transition-all border border-white/30 px-6 py-3 rounded-xs bg-white/10 backdrop-blur-md"
             aria-label="Back to Top"
           >
             BACK TO TOP
           </button>
         </div>
 
-        {/* Middle Row: Domains, Address (Bottom Footer Only) & Navigation */}
+        {/* Middle Row: Domains, Address & Contact, Navigation */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-white/15 text-xs">
           {/* Domains */}
-          <div className="md:col-span-4 space-y-2">
+          <div className="md:col-span-4 space-y-2.5">
             <div className="text-xs text-neutral-300 tracking-[0.25em] uppercase font-bold">
               INDUSTRY DOMAINS
             </div>
-            <div className="text-sm text-white tracking-wider font-bold">
-              Defence | Aerospace | Power Generation | Advanced Manufacturing
+            <div className="text-sm sm:text-base text-white tracking-wider font-bold">
+              Defense | Aerospace | Power Generation | Advanced Manufacturing
             </div>
-            <p className="text-xs text-neutral-300 font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-200 font-normal leading-relaxed">
               Precision engineering and manufacturing of mission-critical components, blading, turbine casings, and flight sub-assemblies.
             </p>
           </div>
 
-          {/* Address in Bottom Footer */}
-          <div className="md:col-span-4 space-y-2">
+          {/* Address & Contact in Bottom Footer */}
+          <div className="md:col-span-4 space-y-2.5">
             <div className="text-xs text-neutral-300 tracking-[0.25em] uppercase font-bold">
-              FACILITY ADDRESS
+              FACILITY & INQUIRIES
             </div>
-            <p className="text-sm text-white font-bold">
+            <p className="text-sm sm:text-base text-white font-bold">
               Hardware Park, Hyderabad, Telangana, India
             </p>
-            <p className="text-xs text-neutral-300 font-normal">
+            <p className="text-xs sm:text-sm text-neutral-200 font-normal">
               Approximately 10 minutes from Hyderabad International Airport
             </p>
-            <p className="text-[11px] text-neutral-400">
-              Latitude 17.2403° N, Longitude 78.4294° E
-            </p>
+            <div className="pt-1">
+              <a
+                href="mailto:aetheraaeroworksllp7@gmail.com"
+                className="inline-block text-xs sm:text-sm text-white font-semibold underline underline-offset-4 hover:text-neutral-300 transition-colors"
+              >
+                aetheraaeroworksllp7@gmail.com
+              </a>
+            </div>
           </div>
 
           {/* Direct Navigation */}

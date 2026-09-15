@@ -41,12 +41,12 @@ export function App() {
       <StarfieldBackground />
 
       {/* Top Fixed Sticky Navigation Bar */}
-      <Navbar onOpenProjectModal={() => handleOpenProjectModal()} />
+      <Navbar />
 
       {/* Main Single Page Content */}
       <main className="flex-grow">
         {/* 1. Hero Section (PRECISION ENGINEERED FOR TOMORROW) */}
-        <HeroSection onOpenProjectModal={() => handleOpenProjectModal()} />
+        <HeroSection />
 
         {/* 2. About Section (ENGINEERING COMPLEXITY INTO PRECISION) */}
         <AboutSection />
@@ -58,10 +58,10 @@ export function App() {
         <FacilitiesSection />
 
         {/* 5. Process: From Drawing to Delivered Component */}
-        <ProcessSection onOpenProjectModal={() => handleOpenProjectModal()} />
+        <ProcessSection />
 
         {/* 6. Why Partner With Aethera? */}
-        <WhyUsSection onOpenProjectModal={() => handleOpenProjectModal()} />
+        <WhyUsSection />
 
         {/* 7. Contact Section (LET'S BUILD YOUR NEXT COMPONENT) */}
         <ContactSection onOpenProjectModal={() => handleOpenProjectModal()} />

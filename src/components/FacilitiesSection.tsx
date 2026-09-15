@@ -61,7 +61,7 @@ export const FacilitiesSection: FC = () => {
       </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 w-full py-16 sm:py-20">
-        {/* Section Header (Refined Scale) */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,16 +69,16 @@ export const FacilitiesSection: FC = () => {
           transition={{ duration: 0.7 }}
           className="mb-10 max-w-3xl"
         >
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-xs bg-black/60 border border-white/25 backdrop-blur-xl mb-3">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xs bg-black/75 border border-white/30 backdrop-blur-xl mb-3">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="text-xs text-white tracking-[0.25em] uppercase font-bold">
+            <span className="text-xs sm:text-sm text-white tracking-[0.25em] uppercase font-bold">
               MANUFACTURING INFRASTRUCTURE
             </span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight mb-2.5 drop-shadow-2xl">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-tight mb-3 drop-shadow-2xl">
             ADVANCED MACHINING FACILITIES
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-200 font-light leading-relaxed">
+          <p className="text-sm sm:text-base text-neutral-100 font-normal leading-relaxed drop-shadow-md">
             Equipped with heavy-duty vertical & horizontal turning, multi-axis simultaneous milling, sub-micron CMM metrology, and inert welding facilities at Hardware Park, Hyderabad.
           </p>
         </motion.div>
@@ -92,35 +92,35 @@ export const FacilitiesSection: FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="group p-5 sm:p-5.5 rounded-xs bg-black/65 backdrop-blur-xl border border-white/20 hover:border-white hover:bg-black/85 transition-all duration-300 flex flex-col justify-between cursor-default"
+              className="group p-5 sm:p-6 rounded-xs bg-black/75 backdrop-blur-xl border border-white/25 hover:border-white hover:bg-black/90 transition-all duration-300 flex flex-col justify-between cursor-default"
             >
               <div>
-                <div className="flex items-center justify-between text-[11px] text-neutral-400 tracking-wider uppercase font-semibold mb-2.5 group-hover:text-white transition-colors">
+                <div className="flex items-center justify-between text-xs text-neutral-300 tracking-wider uppercase font-semibold mb-3 group-hover:text-white transition-colors">
                   <span>FACILITY // 0{idx + 1}</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/40 group-hover:bg-white transition-all" />
+                  <span className="w-2 h-2 rounded-full bg-white/50 group-hover:bg-white transition-all" />
                 </div>
 
-                <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-white mb-2 group-hover:text-white transition-colors">
+                <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-white mb-2.5 group-hover:text-white transition-colors">
                   {item.title}
                 </h3>
 
-                <div className="flex flex-wrap gap-1.5 mb-2.5">
-                  <div className="inline-block px-2.5 py-1 rounded-xs bg-white/10 border border-white/25 text-xs text-neutral-100 font-bold">
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  <div className="inline-block px-3 py-1 rounded-xs bg-white/10 border border-white/30 text-xs sm:text-sm text-neutral-100 font-bold">
                     {item.capacity}
                   </div>
                   {item.subBadge && (
-                    <div className="inline-block px-2 py-1 rounded-xs bg-white/15 border border-white/30 text-[10px] text-white font-semibold">
+                    <div className="inline-block px-2.5 py-1 rounded-xs bg-white/15 border border-white/35 text-xs text-white font-semibold">
                       {item.subBadge}
                     </div>
                   )}
                 </div>
 
-                <p className="text-xs text-neutral-300 leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-neutral-200 leading-relaxed font-normal">
                   {item.desc}
                 </p>
               </div>
 
-              <div className="mt-4 pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] text-neutral-400 font-medium group-hover:text-neutral-200 transition-colors">
+              <div className="mt-5 pt-3 border-t border-white/15 flex items-center justify-between text-xs text-neutral-300 font-medium group-hover:text-neutral-100 transition-colors">
                 <span>ACTIVE SPECIFICATION</span>
                 <span className="tracking-widest uppercase group-hover:text-white transition-colors">ONLINE</span>
               </div>
