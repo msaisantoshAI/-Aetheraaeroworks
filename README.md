@@ -1,10 +1,15 @@
 # AETHERA AERO WORKS — Advanced Precision Engineering
 
-[![Deploy to GitHub Pages](https://github.com/reddysantosh1112/Aetheraaeroworks/actions/workflows/deploy.yml/badge.svg)](https://github.com/reddysantosh1112/Aetheraaeroworks/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/msaisantoshAI/-Aetheraaeroworks/actions/workflows/deploy.yml/badge.svg)](https://github.com/msaisantoshAI/-Aetheraaeroworks/actions/workflows/deploy.yml)
 
 > **Precision Engineered for Tomorrow.**  
 > Advanced Manufacturing & Precision Machining for Defense, Aerospace & Power Generation.  
 > Strategically located at Hardware Park, Hyderabad, India.
+
+---
+
+## 🌐 Live Website
+- **Production URL**: [https://msaisantoshai.github.io/-Aetheraaeroworks/](https://msaisantoshai.github.io/-Aetheraaeroworks/)
 
 ---
 
@@ -40,10 +45,10 @@ Located at **Hardware Park, Hyderabad**, strategically close to Rajiv Gandhi Int
 ## 🚀 Tech Stack & Design Architecture
 
 - **Framework**: React 19 + TypeScript + Vite
-- **Styling**: Tailwind CSS (Dark aesthetic, glassmorphism, responsive typography, modern contrast)
+- **Styling**: Tailwind CSS (Dark aesthetic, glassmorphism, responsive typography, modern contrast, WCAG 2.1 compliance)
 - **Animation**: Framer Motion (viewport animations, interactive cards, smooth preloader, seamless workflow)
 - **Icons**: Lucide React
-- **Deployment**: Automated GitHub Pages workflow (`.github/workflows/deploy.yml`)
+- **Deployment**: Automated GitHub Pages CI/CD workflow (`.github/workflows/deploy.yml`)
 
 ---
 
@@ -68,13 +73,8 @@ npm run preview
 ## 📍 Facility & Contact
 
 - **Facility Address**: Hardware Park, Hyderabad, Telangana, India (10 minutes from Rajiv Gandhi International Airport)
-- **Email / RFQ**: `aetheraaeroworksllp7@gmail.com`
-- **Repositories**:
-  - [https://github.com/msaisantoshAI/-Aetheraaeroworks.git](https://github.com/msaisantoshAI/-Aetheraaeroworks.git)
-  - [https://github.com/msaisantoshAI/Aetheraaeroworks.git](https://github.com/msaisantoshAI/Aetheraaeroworks.git)
-- **Live Deployments**:
-  - [https://msaisantoshai.github.io/-Aetheraaeroworks/](https://msaisantoshai.github.io/-Aetheraaeroworks/)
-  - [https://msaisantoshai.github.io/Aetheraaeroworks/](https://msaisantoshai.github.io/Aetheraaeroworks/)
+- **Official Contact Email**: `aetheraaeroworksllp7@gmail.com`
+- **Repository**: [https://github.com/msaisantoshAI/-Aetheraaeroworks](https://github.com/msaisantoshAI/-Aetheraaeroworks)
 
 ---
 

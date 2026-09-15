@@ -7,41 +7,41 @@ export const AboutSection: FC = () => {
     <div id="about" className="w-full relative z-10">
       {/* 1. Main About Section (SpaceX Full-Bleed Background Layout - Floating Direct Text) */}
       <section className="relative min-h-[85vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none">
-        {/* Background Image: 5-Axis Precision Specimen (Balanced Brightness & Contrast) */}
+        {/* Background Image: 5-Axis Precision Specimen */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src="/images/about_precision_part_1789038407420.jpg"
             alt="5-Axis CNC machined aerospace monolithic components"
-            className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.05]"
+            className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
           />
-          {/* Directional gradient so text is razor sharp on left while specimen on right remains bright */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12]/90 via-transparent to-black/30" />
+          {/* Directional gradient: High-density dark backdrop on mobile for WCAG AAA contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 sm:via-black/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/40" />
         </div>
 
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 w-full py-20">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl space-y-6"
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-2xl space-y-5 sm:space-y-6"
           >
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xs bg-black/75 border border-white/30 backdrop-blur-xl">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-xs sm:text-sm text-white tracking-[0.25em] uppercase font-bold">
+              <span className="text-[11px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
                 ABOUT AETHERA AERO WORKS
               </span>
             </div>
 
             {/* Headline */}
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.08] drop-shadow-2xl">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-white leading-[1.08] sm:leading-[0.98] drop-shadow-2xl">
               ENGINEERING COMPLEXITY INTO PRECISION.
             </h2>
 
-            {/* Articulated Body Copy (Industry standard mobile sizing: 14px-16px) */}
-            <div className="space-y-4 text-sm sm:text-base text-neutral-100 font-normal leading-relaxed drop-shadow-md">
+            {/* Articulated Body Copy */}
+            <div className="space-y-3 text-sm sm:text-base text-slate-100 font-light leading-relaxed drop-shadow-md">
               <p>
                 Aethera Aero Works is a dynamic engineering start-up established with a clear vision to serve the Defense, Aerospace and Power Generation sectors through advanced manufacturing, precision machining and engineering capabilities.
               </p>
@@ -53,13 +53,13 @@ export const AboutSection: FC = () => {
               </p>
             </div>
 
-            {/* Location & QMS Badges with Enhanced Blur */}
-            <div className="pt-2 flex flex-wrap gap-3 text-xs sm:text-sm text-neutral-100 font-medium">
-              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xs bg-black/75 border border-white/25 backdrop-blur-xl">
+            {/* Location & QMS Badges with Enhanced Mobile Clarity */}
+            <div className="pt-2 flex flex-wrap gap-2.5 sm:gap-3 text-xs text-slate-100 font-medium">
+              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/25 backdrop-blur-xl">
                 <MapPin className="w-4 h-4 text-white shrink-0" />
                 <span>Hardware Park, Hyderabad</span>
               </div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xs bg-black/75 border border-white/25 backdrop-blur-xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/25 backdrop-blur-xl">
                 <ShieldCheck className="w-4 h-4 text-white shrink-0" />
                 <span>Pursuing AS9100D & ISO 9001:2015</span>
               </div>
@@ -68,54 +68,72 @@ export const AboutSection: FC = () => {
         </div>
       </section>
 
-      {/* 2. White Background Matte Black Text Pillars Banner (Sleek, High Contrast & Compact) */}
-      <section className="w-full bg-white text-black py-10 sm:py-14 border-y border-neutral-200">
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-20">
-          <div className="text-center mb-7">
-            <span className="text-xs text-neutral-600 tracking-[0.3em] uppercase font-bold">
+      {/* 2. Foundational Pillars Banner: High-Contrast Dark on Mobile, Crisp Minimalist on Desktop */}
+      <section className="w-full bg-[#090b0e] sm:bg-white text-white sm:text-black py-10 sm:py-12 border-y border-white/15 sm:border-neutral-200">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-20">
+          <div className="text-center mb-6">
+            <span className="text-[11px] sm:text-xs text-slate-400 sm:text-neutral-500 tracking-[0.28em] uppercase font-bold font-mono">
               FOUNDATIONAL PILLARS
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 text-center md:text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 text-left">
             {/* 1. Precision */}
-            <div className="space-y-2 p-5 sm:p-6 rounded-xs bg-neutral-50 border border-neutral-200 shadow-xs hover:border-black transition-colors duration-300">
-              <div className="text-[11px] font-bold text-neutral-500 tracking-[0.25em] uppercase">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="space-y-1.5 p-4.5 sm:p-5 rounded-xs bg-slate-950 sm:bg-neutral-50 border border-slate-800 sm:border-neutral-200 shadow-sm lg:hover:border-black transition-colors duration-300"
+            >
+              <div className="text-[10px] font-bold text-slate-400 sm:text-neutral-500 tracking-[0.25em] uppercase font-mono">
                 PILLAR // 01
               </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-black uppercase">
+              <h3 className="text-lg sm:text-2xl font-extrabold tracking-tight text-white sm:text-black uppercase">
                 PRECISION
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-700 font-normal leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300 sm:text-neutral-600 font-normal sm:font-medium leading-relaxed">
                 Micro-tolerances and geometric fidelity verified through advanced 3D CMM metrology inspection.
               </p>
-            </div>
+            </motion.div>
 
             {/* 2. Engineering */}
-            <div className="space-y-2 p-5 sm:p-6 rounded-xs bg-neutral-50 border border-neutral-200 shadow-xs hover:border-black transition-colors duration-300">
-              <div className="text-[11px] font-bold text-neutral-500 tracking-[0.25em] uppercase">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="space-y-1.5 p-4.5 sm:p-5 rounded-xs bg-slate-950 sm:bg-neutral-50 border border-slate-800 sm:border-neutral-200 shadow-sm lg:hover:border-black transition-colors duration-300"
+            >
+              <div className="text-[10px] font-bold text-slate-400 sm:text-neutral-500 tracking-[0.25em] uppercase font-mono">
                 PILLAR // 02
               </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-black uppercase">
+              <h3 className="text-lg sm:text-2xl font-extrabold tracking-tight text-white sm:text-black uppercase">
                 ENGINEERING
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-700 font-normal leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300 sm:text-neutral-600 font-normal sm:font-medium leading-relaxed">
                 Multi-axis toolpath optimization, DFM consultation, and complex component process engineering.
               </p>
-            </div>
+            </motion.div>
 
             {/* 3. Manufacturing */}
-            <div className="space-y-2 p-5 sm:p-6 rounded-xs bg-neutral-50 border border-neutral-200 shadow-xs hover:border-black transition-colors duration-300">
-              <div className="text-[11px] font-bold text-neutral-500 tracking-[0.25em] uppercase">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="space-y-1.5 p-4.5 sm:p-5 rounded-xs bg-slate-950 sm:bg-neutral-50 border border-slate-800 sm:border-neutral-200 shadow-sm lg:hover:border-black transition-colors duration-300"
+            >
+              <div className="text-[10px] font-bold text-slate-400 sm:text-neutral-500 tracking-[0.25em] uppercase font-mono">
                 PILLAR // 03
               </div>
-              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-black uppercase">
+              <h3 className="text-lg sm:text-2xl font-extrabold tracking-tight text-white sm:text-black uppercase">
                 MANUFACTURING
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-700 font-normal leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300 sm:text-neutral-600 font-normal sm:font-medium leading-relaxed">
                 One-stop precision facility from raw billet to finished, inspected flight and power components.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

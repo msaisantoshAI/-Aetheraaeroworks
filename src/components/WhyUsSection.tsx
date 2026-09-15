@@ -2,6 +2,10 @@ import type { FC } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
+interface WhyUsProps {
+  onOpenProjectModal?: () => void;
+}
+
 const advantages = [
   'Large and complex component machining',
   'High-precision CNC manufacturing',
@@ -13,7 +17,7 @@ const advantages = [
   'Strategic location at Hardware Park, Hyderabad',
 ];
 
-export const WhyUsSection: FC = () => {
+export const WhyUsSection: FC<WhyUsProps> = () => {
   return (
     <section id="why-us" className="relative min-h-[90vh] w-full flex flex-col justify-center text-white border-t border-white/15 overflow-hidden select-none">
       {/* Full-Bleed Background Image: Rocket Launchpad at Dusk */}
@@ -21,27 +25,27 @@ export const WhyUsSection: FC = () => {
         <img
           src="/images/media_1789103249800.jpg"
           alt="Aerospace rocket launch vehicle on launchpad at dusk"
-          className="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.05]"
+          className="w-full h-full object-cover object-center filter brightness-[0.85] sm:brightness-[0.92] contrast-[1.05]"
         />
-        {/* Directional Gradients so Left-Aligned Content is Razor Sharp and Right Side is Visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/55 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12]/90 via-transparent to-black/30" />
+        {/* Directional Gradients for WCAG AAA legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 sm:via-black/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-black/35" />
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 w-full py-16 sm:py-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 w-full py-16 sm:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Left-Aligned Technical Partnership Content (Text-Only - No Cards/Boxes) */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-8 space-y-6"
           >
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xs bg-black/75 border border-white/30 backdrop-blur-xl">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 rounded-xs bg-slate-950/90 sm:bg-black/60 border border-white/30 backdrop-blur-xl">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span className="text-xs sm:text-sm text-white tracking-[0.25em] uppercase font-bold">
+                <span className="text-[10px] sm:text-xs text-white tracking-[0.22em] uppercase font-bold font-mono">
                   TECHNICAL PARTNERSHIP
                 </span>
               </div>
@@ -50,30 +54,30 @@ export const WhyUsSection: FC = () => {
                 WHY PARTNER WITH AETHERA?
               </h2>
 
-              <div className="text-xs sm:text-sm text-neutral-200 font-semibold tracking-wider uppercase">
+              <div className="text-xs sm:text-sm text-slate-200 font-semibold tracking-wider uppercase font-mono">
                 Your requirement. Our engineering challenge.
               </div>
 
-              <p className="text-sm sm:text-base text-neutral-100 font-normal leading-relaxed drop-shadow-md max-w-2xl">
+              <p className="text-xs sm:text-sm md:text-base text-slate-100 font-light leading-relaxed drop-shadow-md max-w-2xl">
                 Whether you need a single complex prototype, development component, critical replacement part, or production quantities, Aethera Aero Works is equipped and committed to supporting your requirements with precision and speed.
               </p>
             </div>
 
-            {/* 8 Text-Only Technical Partnership Points (Strictly No Cards/Boxes) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-2">
+            {/* 8 Text-Only Technical Partnership Points */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 sm:gap-y-3.5 pt-2">
               {advantages.map((adv, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.05 }}
-                  className="flex items-start gap-3 group text-left"
+                  transition={{ duration: 0.35, delay: idx * 0.04 }}
+                  className="flex items-start gap-3 text-left"
                 >
-                  <div className="w-4 h-4 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-white transition-colors duration-300">
-                    <Check className="w-2.5 h-2.5 text-white group-hover:text-black stroke-[3] transition-colors" />
+                  <div className="w-4.5 h-4.5 rounded-full bg-white/15 border border-white/40 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-white stroke-[3]" />
                   </div>
-                  <span className="text-sm sm:text-base text-neutral-100 font-normal leading-snug drop-shadow-md group-hover:text-white transition-colors">
+                  <span className="text-xs sm:text-sm text-slate-100 font-normal leading-snug drop-shadow-md">
                     {adv}
                   </span>
                 </motion.div>
@@ -81,7 +85,7 @@ export const WhyUsSection: FC = () => {
             </div>
           </motion.div>
 
-          {/* Right Column (Unobstructed launchpad atmosphere visual) */}
+          {/* Right Column (Atmospheric launchpad visual on desktop) */}
           <div className="hidden lg:block lg:col-span-4" />
         </div>
       </div>

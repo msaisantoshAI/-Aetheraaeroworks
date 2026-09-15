@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { Mail, MapPin } from 'lucide-react';
 
 export const Footer: FC = () => {
   const scrollToTop = () => {
@@ -13,77 +14,79 @@ export const Footer: FC = () => {
   };
 
   return (
-    <footer className="relative w-full text-white border-t border-white/20 pt-20 pb-14 overflow-hidden">
-      {/* Footer Orbital Atmospheric Background Image (Explicit User Requirement #10) */}
+    <footer className="relative w-full text-white border-t border-white/20 pt-16 pb-12 overflow-hidden">
+      {/* Footer Orbital Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <img
           src="/images/media_1789122802851.webp"
           alt="Earth orbital horizon atmosphere view"
-          className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.1]"
+          className="w-full h-full object-cover object-center filter brightness-[0.7] contrast-[1.1]"
         />
         {/* Dark Slate Gradients for Impeccable Text Contrast */}
-        <div className="absolute inset-0 bg-[#0c0e12]/85 backdrop-blur-[2px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/90 to-transparent" />
+        <div className="absolute inset-0 bg-[#090b0e]/90 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090b0e] via-[#090b0e]/95 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-16 xl:px-20">
         {/* Top Row: Brand & Back to Top */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-14 border-b border-white/15">
-          <div className="space-y-2">
-            <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-10 border-b border-white/15">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2.5">
               <img
                 src="/images/logo-white.png"
-                alt="aetheraaeroworks Logo"
-                className="h-7 sm:h-8 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                alt="Aethera Aero Works Logo"
+                className="h-6 sm:h-7 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
               />
-              <span className="text-base sm:text-lg font-bold tracking-[0.25em] text-white uppercase">
-                aetheraaeroworks
+              <span className="text-base sm:text-lg font-bold tracking-[0.22em] text-white uppercase">
+                AETHERA AERO WORKS
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-neutral-200 tracking-wide font-normal">
+            <p className="text-xs sm:text-sm text-slate-300 tracking-wide font-normal">
               Precision Engineering for a Stronger Tomorrow
             </p>
           </div>
 
           <button
             onClick={scrollToTop}
-            className="inline-flex items-center text-xs font-bold text-white hover:text-black hover:bg-white transition-all border border-white/30 px-6 py-3 rounded-xs bg-white/10 backdrop-blur-md"
+            className="inline-flex items-center text-xs font-bold text-slate-200 hover:text-white transition-colors border border-white/30 px-5 py-2.5 rounded-xs hover:border-white bg-white/10 active:bg-white/20 backdrop-blur-md"
             aria-label="Back to Top"
           >
             BACK TO TOP
           </button>
         </div>
 
-        {/* Middle Row: Domains, Address & Contact, Navigation */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-white/15 text-xs">
+        {/* Middle Row: Domains, Facility & Official Contact */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-10 border-b border-white/15 text-xs">
           {/* Domains */}
-          <div className="md:col-span-4 space-y-2.5">
-            <div className="text-xs text-neutral-300 tracking-[0.25em] uppercase font-bold">
+          <div className="md:col-span-4 space-y-2">
+            <div className="text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
               INDUSTRY DOMAINS
             </div>
-            <div className="text-sm sm:text-base text-white tracking-wider font-bold">
-              Defense | Aerospace | Power Generation | Advanced Manufacturing
+            <div className="text-sm text-white tracking-wider font-bold">
+              Defence | Aerospace | Power Generation
             </div>
-            <p className="text-xs sm:text-sm text-neutral-200 font-normal leading-relaxed">
-              Precision engineering and manufacturing of mission-critical components, blading, turbine casings, and flight sub-assemblies.
+            <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+              Precision manufacturing of flight-critical components, blading systems, large turbine casings, and dynamic rotors.
             </p>
           </div>
 
-          {/* Address & Contact in Bottom Footer */}
+          {/* Facility & Contact Address */}
           <div className="md:col-span-4 space-y-2.5">
-            <div className="text-xs text-neutral-300 tracking-[0.25em] uppercase font-bold">
-              FACILITY & INQUIRIES
+            <div className="text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
+              FACILITY & CONTACT
             </div>
-            <p className="text-sm sm:text-base text-white font-bold">
-              Hardware Park, Hyderabad, Telangana, India
+            <div className="flex items-start gap-2 text-xs sm:text-sm text-slate-100 font-medium">
+              <MapPin className="w-4 h-4 text-white shrink-0 mt-0.5" />
+              <span>Hardware Park, Hyderabad, Telangana, India</span>
+            </div>
+            <p className="text-xs text-slate-300 font-light pl-6">
+              ~10 minutes from Rajiv Gandhi International Airport
             </p>
-            <p className="text-xs sm:text-sm text-neutral-200 font-normal">
-              Approximately 10 minutes from Hyderabad International Airport
-            </p>
-            <div className="pt-1">
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-slate-100 font-medium pt-1">
+              <Mail className="w-4 h-4 text-white shrink-0" />
               <a
                 href="mailto:aetheraaeroworksllp7@gmail.com"
-                className="inline-block text-xs sm:text-sm text-white font-semibold underline underline-offset-4 hover:text-neutral-300 transition-colors"
+                className="hover:underline font-mono text-slate-100 hover:text-white"
               >
                 aetheraaeroworksllp7@gmail.com
               </a>
@@ -92,10 +95,10 @@ export const Footer: FC = () => {
 
           {/* Direct Navigation */}
           <div className="md:col-span-4 space-y-2">
-            <div className="text-xs text-neutral-300 tracking-[0.25em] uppercase font-bold">
+            <div className="text-[11px] text-slate-400 tracking-[0.25em] uppercase font-bold font-mono">
               DIRECT ACCESS
             </div>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-neutral-300 font-medium">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-300 font-medium">
               <button
                 onClick={() => scrollToSection('home')}
                 className="hover:text-white transition-colors uppercase font-semibold"
@@ -112,7 +115,7 @@ export const Footer: FC = () => {
                 onClick={() => scrollToSection('what-we-make')}
                 className="hover:text-white transition-colors uppercase font-semibold"
               >
-                What We Make
+                Capabilities
               </button>
               <button
                 onClick={() => scrollToSection('facilities')}
@@ -143,12 +146,12 @@ export const Footer: FC = () => {
         </div>
 
         {/* Bottom Row: QMS Compliance Note & Copyright */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-400 font-medium">
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400 font-medium">
           <div>
             &copy; {new Date().getFullYear()} Aethera Aero Works. All Rights Reserved.
           </div>
-          <div className="text-center md:text-right text-xs text-neutral-300">
-            *Quality Management Systems: Pursuing AS9100D and ISO 9001:2015 Certification (Certification in Progress).
+          <div className="text-center md:text-right text-xs text-slate-300">
+            *Quality Architecture: Pursuing AS9100D and ISO 9001:2015 Standards.
           </div>
         </div>
       </div>
